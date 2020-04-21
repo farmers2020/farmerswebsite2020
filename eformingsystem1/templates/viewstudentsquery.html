@@ -1,0 +1,74 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>view students query</title>
+  </head>
+  <body>
+    {% include 'adminhead.html' %}
+    <div class="card bg-dark text-white">
+  <img src="{% static 'images/query1.jpg' %}" class="card-img" width="100%" height="700">
+  <div class="card-img-overlay">
+      <br><br>
+   {% if data %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong style="color: green">success message!</strong>{{ message }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+      {% endif %}
+    <table align="center" border="20" cellpadding="10">
+        <tr>
+            <th style="text-align: center;background-color: teal" colspan="5">
+              STUDENTS  QUERIES
+            </th>
+        </tr>
+        <tr>
+
+        </tr>
+        {% for x in data %}
+            <tr>
+             <th>{{ x.name }}</th>
+            <th>{{ x.email }}</th>
+            <th>{{ x.query }}</th>
+                <form action="{% url 'reply' %}" method="post">
+                    {% csrf_token %}
+                    <th>
+                        <input type="hidden" value="{{ x.name }}" name="t1">
+                        <input type="hidden" value="{{ x.email }}" name="t2">
+                     <button type="submit">Reply</button>
+                    </th>
+                     </form>
+                    <th>
+                        <form action="{% url 'offiquerysave' %}" method="post">
+                            {% csrf_token %}
+                          <input type="hidden" value="{{ x.name }}" name="t1">
+                        <input type="hidden" value="{{ x.email }}" name="t2">
+                            <input type="hidden" value="{{ x.query }}" name="t3">
+
+                        <button type="submit">send to officers</button>
+                            </form>
+                    </th>
+
+             </tr>
+        {% endfor %}
+    </table>
+  </div>
+</div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

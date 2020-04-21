@@ -1,0 +1,111 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+     {% include 'head.html' %}
+    <marquee>
+              <h1 style="color: green;font-family: 'Times New Roman'">WEATHER FORE COSTING</h1>
+             </marquee>
+   <div class="card bg-dark text-white">
+  <img src="{% static 'images/cloud.jpg'  %}" class="card-img" width="100%" height="500">
+  <div class="card-img-overlay">
+      <br>
+      <table align="center" cellpadding="10" border="2">
+          <tr >
+              <th style="background-color:green;text-align: center" colspan="2">
+                  {{ city }} CITY WEATHER FORE COSTING
+              </th>
+          </tr>
+          <tr style="width: 300px">
+              <th>
+                 CITY NAME
+              </th>
+                <th>
+                 {{ city }}
+              </th>
+          </tr>
+             <tr style="width: 300px">
+              <th>
+                 WEATHER
+              </th>
+                <th>
+                 {{ weather }}
+              </th>
+          </tr>
+             <tr style="width: 300px">
+              <th>
+                 DESCRIPTION
+              </th>
+                <th>
+                 {{ des}}
+              </th>
+          </tr>
+             <tr style="width: 300px">
+              <th>
+                 TEMPERATURE
+              </th>
+                <th>
+                 {{ temp }}<sup>0</sup>C
+              </th>
+          </tr>
+             <tr style="width: 300px">
+              <th>
+                 MINIMUM TEMPERATURE
+              </th>
+                <th>
+                 {{ temp_min }}
+              </th>
+          </tr>
+             <tr style="width: 300px">
+              <th>
+                 MAXIMUM TEMPERATURE
+              </th>
+                <th>
+                 {{ temp_max }}
+              </th>
+          </tr>
+             <tr>
+              <th>
+                 PRESSURE
+              </th>
+                <th>
+                 {{ pressure }}
+              </th>
+          </tr>
+             <tr style="width: 300px">
+              <th>
+                 HUMIDITY
+              </th>
+                <th>
+                 {{ humidity }}
+              </th>
+          </tr>
+           <tr style="width: 300px">
+              <th>
+                 WIND SPEED
+              </th>
+                <th>
+                 {{ wind }}km/h
+              </th>
+          </tr>
+      </table>
+  </div>
+   </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

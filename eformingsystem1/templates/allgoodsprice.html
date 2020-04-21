@@ -1,0 +1,93 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Allgoodsprice</title>
+  </head>
+  <body>
+    <table border="2">
+        <tr>
+            <th>
+                <img src="{% static 'images/e1logo.png' %}">
+            </th>
+            <th>
+                <div class="card bg-dark text-white">
+  <img src="{% static 'images/vegetables.jpg' %}" width="1100" height="250">
+  <div class="card-img-overlay">
+    <h3 class="card-title" style="color:orange;"> e-Farmer support system</h3>
+  </div>
+</div>
+            </th>
+            <th>
+                <img src="{% static 'images/elogo.png' %}" width="200" height="200">
+            </th>
+        </tr>
+    </table>
+    <hr>
+    <div class="card bg-dark text-white">
+  <img src="{% static 'images/v4.jpg' %}" width="100%" height="900">
+  <div class="card-img-overlay">
+    <table align="center" border="2" cellpadding="10">
+        <tr>
+            <th bgcolor="green" colspan="7" style="text-align: center">ALL VEGETABLES,FRUITS AND SEEDS PRICE </th>
+        </tr>
+        <tr bgcolor="purple">
+            <td width="200" align="center">PHOTO</td>
+            <td width="200" align="center">GOODSNAME</td>
+            <td width="200" align="center">GOODSPRICE</td>
+            <td width="200" align="center">GOODSQUANTITY</td>
+            <td width="200" align="center">CATEGORY</td>
+            <td width="200" align="center">UPDATE</td>
+            <td width="200" align="center">DELETE</td>
+        </tr>
+        {% for x in data %}
+            <tr bgcolor="#f5f5f5">
+            <td><img src="{{ x.goodsphoto.url }}" width="200" height="200"></td>
+            <td width="200" align="center"style="color: black">{{ x.goodsname }}</td>
+            <td width="200" align="center" style="color: black">Rupee {{ x.goodsprice }}</td>
+            <td width="200" align="center" style="color: black">{{ x.goodsquantity }}</td>
+            <td width="200" align="center" style="color: black">{{ x.category }}</td>
+                <form action="{% url 'updategoods' %}" method="post">
+                    {% csrf_token %}
+
+                     <td width="200" align="center" style="color: black">
+                         <input type="hidden" value="{{ x.goodsname }}"  name="t1">
+                         <button type="submit" class="btn btn-primary">UPDATE</button>
+                     </td>
+
+                </form>
+ <form action="{% url 'deletegoods' %}" method="post">
+        {% csrf_token %}
+
+        <td width="200" align="center" style="color: black">
+            <input type="hidden"  value="{{ x.goodsname }}" name="t2">
+            <button type="submit" class="btn btn-danger">DELETE</button></td>
+        </form>
+
+            </tr>
+        {% endfor %}
+    <tr>
+        <th style="text-align: center;color: black;width: 200px;font-size: 30px" colspan="7" >
+            {% for x in data.paginator.page_range%}
+             <a href="?page_no={{ x }}">{{ x }}</a>
+            {% endfor %}
+        </th>
+    </tr>
+    </table>
+  </div>
+</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

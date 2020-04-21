@@ -1,0 +1,114 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>officer view query</title>
+  </head>
+  <body>
+  {% include 'officeshead.html' %}
+  {% include 'officermenu.html' %}
+  <div class="card bg-dark text-white">
+  <img src="{% static 'images/ofbag.jpg' %}" class="card-img" width="100%" height="700">
+  <div class="card-img-overlay">
+      {% if data %}
+   <table align="center" border="20" cellpadding="10">
+       <tr>
+           <th bgcolor="black" style="text-align: center" colspan="2">
+               VIEW ALL QUERIES
+           </th>
+       </tr>
+     <tr>
+           <th width="300">
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'images/offi12.jpg' %}"  width="300" height="300">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/offi12.jpg' %}"  width="300" height="300">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/offi13.jpg' %}"  width="300" height="300">
+    </div>
+      <div class="carousel-item">
+      <img src="{% static 'images/offi14.jpg' %}"  width="300" height="300">
+    </div>
+      <div class="carousel-item">
+      <img src="{% static 'images/offi15.jpg' %}"  width="300" height="300">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+           </th>
+         <th>
+             <table align="center" border="2" cellpadding="10">
+                 <tr>
+                     <th bgcolor="black" style="text-align: center" colspan="4" >
+               VIEW ALL QUERIES
+                  </th>
+                     <tr style="background:white">
+                 <th style="color: black;text-align: center">NAME</th>
+                 <th style="color: black;text-align: center">EMAIL</th>
+                 <th style="color: black;text-align: center">QUERY</th>
+                  <th style="color: black;text-align: center">REPLY</th>
+             </tr>
+                 </tr>
+                 {% for x in data%}
+                 <tr bgcolor="green">
+                     <th>
+                         {{ x.name }}
+                     </th>
+                     <th>
+                         {{ x.email }}
+                     </th>
+
+                     <th>
+                         {{ x.query }}
+                     </th>
+
+                        <form action="{% url 'offreply' %}" method="post">
+                    {% csrf_token %}
+                    <th>
+                        <input type="hidden" value="{{ x.name }}" name="t1">
+                        <input type="hidden" value="{{ x.email }}" name="t2">
+                        <input type="hidden" value="{{ x.query }}" name="t3">
+                     <button type="submit">Reply</button>
+                    </th>
+                     </form>
+                 </tr>
+                 {% endfor %}
+             </table>
+         </th>
+       </tr>
+   </table>
+      {% else %}
+          <div class="alert alert-success" role="alert">
+  <h4 class="alert-heading" style="color: red">QUERY IS NOT AVAILABLE</h4>
+   <h1>
+       <h1>NO QUERY<img src="{% static 'images/abbreviation.png' %}"></h1>
+   </h1>
+</div>
+      {% endif %}
+  </div>
+</div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

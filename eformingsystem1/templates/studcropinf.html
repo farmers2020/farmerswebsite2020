@@ -1,0 +1,81 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>CROP INFORMATION</title>
+  </head>
+  <body>
+   {% include 'studentshead.html' %}
+     <nav class="navbar navbar-dark" style="background-color: lightgoldenrodyellow">
+  <table>
+      <tr>
+         <th width="200"> <a href="{% url 'home' %}">HOME</a></th>
+          <th width="200"><a href="#">QUERY</a> </th>
+          <th width="200"><a href="{% url 'studentslog' %}">LOGOUT</a></th>
+          <th width="200" colspan="3"><a href="{% url 'stdsoilinfo' %}">BACK</a> </th>
+          <th style="text-align: end" width="400"><form class="form-inline" action="{% url 'search' %}" method="post">
+              {% csrf_token %}
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="t1">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form></th>
+      </tr>
+  </table>
+</nav>
+   <div class="card bg-dark text-white">
+  <img src="{% static 'images/nature.jpg' %}" class="card-img" width="100%" height="700">
+  <div class="card-img-overlay">
+      {% if data %}
+          <table border="2" cellpadding="10">
+          <tr style="background-color: purple">
+             <th width="200" style="text-align: center">IMAGE</th>
+           <th width="200" style="text-align: center">CROP NAME</th>
+           <th width="200" style="text-align: center">TYPE Of CROP</th>
+           <th width="200" style="text-align: center">CROP VERITIES</th>
+           <th width="200" style="text-align: center">TEMPERATURE</th>
+           <th width="200" style="text-align: center">RAINFALL</th>
+           <th width="200" style="text-align: center">SOIL TYPE</th>
+           <th width="300" style="text-align: center">MAJOR PRODUCTION</th>
+           <th width="300" style="text-align: center">HIGHEST PRODUCTION</th>
+           <th width="300" style="text-align: center">HIGEST PRODUCTION COUNTRY</th>
+
+          </tr>
+          <tr style="text-align: center">
+              <th>
+                  <img src="{{ data.cropimage.url }}" width="200" height="200">
+              </th>
+              <th>{{ data.name }}</th>
+               <th width="200" style="text-align: center">{{ data.croptype }}</th>
+           <th width="200" style="text-align: center">{{data.cropverities}}</th>
+           <th width="200" style="text-align: center">{{ data.temp }}</th>
+           <th width="200" style="text-align: center">{{ data.rain }}</th>
+           <th width="200" style="text-align: center">{{ data.soiltype }}</th>
+           <th width="300" style="text-align: center">{{data.majorpro }}</th>
+           <th width="300" style="text-align: center">{{ data.highpro }}</th>
+           <th width="300" style="text-align: center">{{ data.highprocountry }}</th>
+          </tr>
+          </table>
+          {% else %}
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong style="color: red">Invalid Crop Name!</strong>{{ message }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+      {% endif %}
+  </div>
+</div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>
